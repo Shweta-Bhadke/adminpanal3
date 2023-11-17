@@ -3,6 +3,7 @@ import { navchi } from "../locals/chi/navbar";
 import { naven } from "../locals/en/navbar";
 import { Guide } from "./Guide";
 import avastor from '../assets/header/avator.jpeg'
+import Overview from "./dashboard/Timeline";
 import {
   AppstoreOutlined,
   ContainerOutlined,
@@ -261,6 +262,9 @@ console.log(handlekey)
          }
          {
           handlekey === "5"?<Routepermission/>:''
+         }
+         {
+          handlekey === "1"?<Overview/>:''
          }
         </main>
       </section>
