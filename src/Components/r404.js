@@ -10,6 +10,7 @@ import { translatefun } from "./translatefn";
 import { dark } from '@mui/material/styles/createPalette';
 import { Link } from 'react-router-dom';
 export function R404(){
+  const { mode } = useSelector((state) => state.darkMode);
   const [translate,settranslate] = useState("en")
   const lang = useSelector((state)=>state.handleLang.lang.newlang)
    useEffect(()=>{
@@ -23,8 +24,8 @@ export function R404(){
         <div>
          <Result
     status="404"
-    title={<h1>404</h1>}
-    subTitle={<p >{translate.sorry1}</p>}
+    title={<h1 className={`${mode?' text-white':''}`}>404</h1>}
+    subTitle={<p className={`${mode?' text-white':''}`}>{translate.sorry1}</p>}
     extra={<Button type='button' className=' bg-[#5dc2b6] text-white hover:bg-[#81d6cc]' >{translate.home}</Button>}
    />
   </div>

@@ -3,7 +3,8 @@ import { navchi } from "../locals/chi/navbar";
 import { naven } from "../locals/en/navbar";
 import { Guide } from "./Guide";
 import avastor from '../assets/header/avator.jpeg'
-import Overview from "./dashboard/Timeline";
+import Overview from "./dashboard/Overview";
+import Dashboard from "./dashboard/dashboard";
 import {
   AppstoreOutlined,
   ContainerOutlined,
@@ -16,7 +17,9 @@ import {
   UserOutlined,
   LoginOutlined
 } from "@ant-design/icons";
+import FormPage from "./components/form";
 import { Introduction } from "./documentation";
+import Table1 from "./components/table";
 import { Routepermission } from "./routepage";
 import { R404 } from "./r404";
 import { Link } from "react-router-dom";
@@ -43,6 +46,7 @@ import { ReactComponent as NoticeSvg } from "../assets/header/notice.svg";
 import ReactSvg from "../assets/logo/react.svg";
 import AntdSvg from "../assets/logo/antd.svg";
 import { setLogin } from "../Store/Features/login";
+import { Hidden } from "@mui/material";
 // import Asidebar from "./Asidebar";
 const getItem = (label, key, icon, children, type) => {
   return {
@@ -83,6 +87,16 @@ const languageChange = (newlang) =>{
 function handleitem(items){
   setkey(items)
 }
+useEffect(() => {
+  const handleResize = () => {
+    setCollapsed(window.innerWidth < 986);
+  };
+  window.addEventListener('resize', handleResize);
+  handleResize();
+  return () => {
+    window.removeEventListener('resize', handleResize);
+  };
+}, []); 
 
 console.log(handlekey)
   const handleChange = () => {
@@ -136,11 +150,14 @@ console.log(handlekey)
       style={{
         background: mode ? "#1f1f1f" : "white",
         color: mode ? "white" : "black",
-        maxHeight:"100vh",
+        maxHeight:"707px",
+      
+        overflow:"hidden"
         
        
       
       }}
+      
     >
       <div className="flex items-center justify-between px-[40px] shadow-[0_3px_10px_rgb(0,0,0,0.2)] h-[60px] " >
         {" "}
@@ -250,7 +267,7 @@ console.log(handlekey)
           </div>
         </aside>
 
-        <main style={{width:"100%"}} className={`${mode?"bg-black":'bg-white'} p-6`}>
+        <main style={{width:"100%", height:"707px"}} className={`${mode?"bg-black":'bg-gray-100'} p-6 overflow-y-scroll`}>
         {
           handlekey === "2"?<Introduction/>:''
          }
@@ -264,7 +281,16 @@ console.log(handlekey)
           handlekey === "5"?<Routepermission/>:''
          }
          {
-          handlekey === "1"?<Overview/>:''
+          handlekey === "1"?<Dashboard/>:''
+         }
+         {
+          handlekey === "10"?<Table1/>:''
+         }
+         {
+          handlekey === "9"?<FormPage/>:''
+         }
+          {
+          handlekey === "15"?<Table1/>:''
          }
         </main>
       </section>
